@@ -2,7 +2,7 @@ import Title from "../components/Title";
 import InputAddress from "../components/InputAddress";
 
 export default function Home() {
-  const title = 'Crypto Tracking and Investigation Platform';
+  const title = 'Crypto Tracking and Investigation Tool';
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-between bg-transparent">
       <video

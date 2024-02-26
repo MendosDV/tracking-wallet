@@ -1,9 +1,29 @@
 'use client';
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 export default function InputAddress() {
   const [ isDropdownOpen, setIsDropdownOpen ] = useState(false);
+  const blockchains = [
+    {
+      name: 'Ethereum',
+      logo: '/ethereum.svg',
+      value: 'ethereum'
+    },
+    {
+      name: 'Bitcoin',
+      logo: '/bitcoin.svg',
+      value: 'bitcoin'
+    },
+    {
+      name: 'Solana',
+      logo: '/solana.svg',
+      value: 'solana'
+    }
+  ]
+
+  const [ selectedBlockchain, setSelectedBlockchain ] = useState(blockchains[0]);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -14,6 +34,7 @@ export default function InputAddress() {
       if (
         event.target.id !== 'dropdown-button' &&
         event.target.id !== 'dropdown' &&
+        event.target.id !== 'dropdown-blockchain' &&
         !event.target.closest('#dropdown')
       ) {
         setIsDropdownOpen(false);
@@ -30,31 +51,58 @@ export default function InputAddress() {
   }, [isDropdownOpen]);
 
   return(
-    <form action="submit" className="rounded-full text-white border-2	border-indigo-500 backdrop-blur-sm hover:shadow-lg hover:shadow-indigo-500/50 transition duration-500 px-4 mx-4 md:mx-0 md:w-2/3 lg:w-1/2 cursor-pointer text-xs md:text-sm ">
+    <form action="submit" className="rounded-full text-white border-2	border-indigo-500 backdrop-blur-sm hover:shadow-lg hover:shadow-indigo-500/50 transition duration-500 px-4 mx-4 md:mx-0 md:w-2/3 lg:w-1/2 cursor-pointer text-xs md:text-sm relative">
       <div className="flex gap-4 px-4 py-2">
-        <button onClick={toggleDropdown} id="dropdown-button" data-dropdown-toggle="dropdown" className="flex-shrink-0 z-10 inline-flex items-center font-medium text-center border-r border-indigo-500 pr-4" type="button">
-          Select Blockchain
-          <svg className="w-2.5 h-2.5 ms-2.5 text-indigo-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-          <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4"/>
+        <button
+          onClick={toggleDropdown}
+          id="dropdown-button"
+          data-dropdown-toggle="dropdown"
+          className="flex-shrink-0 z-10 inline-flex items-center font-medium text-center border-r border-indigo-500 pr-4"
+          type="button"
+        >
+          <span className="flex gap-3 mr-2" id="dropdown-blockchain">
+            <Image
+              src={selectedBlockchain.logo}
+              alt={selectedBlockchain.name}
+              width={20}
+              height={20}
+            />
+            {selectedBlockchain.name}
+          </span>
+          <svg
+            className="w-2.5 h-2.5 ms-2.5 text-indigo-500"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 10 6"
+          >
+            <path
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="m1 1 4 4 4-4"
+            />
           </svg>
         </button>
         <div
           id="dropdown"
-          className={`z-10 ${isDropdownOpen ? '' : 'hidden'} bg-white divide-y divide-gray-100 rounded-lg shadow w-44`}
+          className={`z-10 ${isDropdownOpen ? '' : 'hidden'} bg-zinc-900 divide-y divide-gray-100 absolute left-0 bottom-16 rounded-lg shadow w-44`}
         >
-          <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
-            <li>
-                <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Shopping</a>
-            </li>
-            <li>
-                <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Images</a>
-            </li>
-            <li>
-                <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">News</a>
-            </li>
-            <li>
-                <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Finance</a>
-            </li>
+          <ul aria-labelledby="dropdown-button">
+            {blockchains.map((blockchain) => (
+              <li onClick={() => setSelectedBlockchain(blockchain)} className="flex gap-2 px-4 hover:bg-gray-700 transition duration-100 my-2" key={blockchain.value}>
+                <Image
+                  src={blockchain.logo}
+                  alt={blockchain.name}
+                  width={20}
+                  height={20}
+                />
+                <p className="px-4 py-2">
+                  {blockchain.name}
+                </p>
+              </li>
+            ))}
           </ul>
         </div>
         <div className="relative w-full">
