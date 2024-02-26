@@ -51,16 +51,16 @@ export default function InputAddress() {
   }, [isDropdownOpen]);
 
   return(
-    <form action="submit" className="rounded-full text-white border-2	border-indigo-500 backdrop-blur-sm hover:shadow-lg hover:shadow-indigo-500/50 transition duration-500 px-4 mx-4 md:mx-0 md:w-2/3 lg:w-1/2 cursor-pointer text-xs md:text-sm relative">
+    <form action="submit" className="rounded-full text-white border-2	border-indigo-500 backdrop-blur-sm hover:shadow-lg hover:shadow-indigo-500/50 transition duration-500 px-4 mx-4 md:mx-0 md:w-2/3 lg:w-2/3 xl:w-1/2 cursor-pointer text-xs md:text-sm relative">
       <div className="flex gap-4 px-4 py-2">
         <button
           onClick={toggleDropdown}
           id="dropdown-button"
           data-dropdown-toggle="dropdown"
-          className="flex-shrink-0 z-10 inline-flex items-center font-medium text-center border-r border-indigo-500 pr-4"
+          className="flex-shrink-0 z-10 inline-flex items-center font-medium text-center border-r border-indigo-500 pr-4 md:w-1/3 xl:w-1/6"
           type="button"
         >
-          <span className="flex gap-3 mr-2" id="dropdown-blockchain">
+          <span className="flex gap-4 w-full m-auto" id="dropdown-blockchain">
             <Image
               src={selectedBlockchain.logo}
               alt={selectedBlockchain.name}
@@ -106,7 +106,7 @@ export default function InputAddress() {
           </ul>
         </div>
         <div className="relative w-full">
-          <input type="search" id="search-dropdown" className="block p-2.5 w-full z-20 text-sm bg-transparent appearance-none focus:outline-none focus:ring-0" placeholder="Please input an address" required />
+          <input type="search" id="search-dropdown" className="block p-2.5 w-full md:w-11/12 z-20 text-sm bg-transparent appearance-none focus:outline-none focus:ring-0" placeholder="Please input an address, a hash or a block ..." required />
           <button type="submit" className="invisible md:visible absolute top-0 end-0 h-full text-sm font-medium text-indigo-500">
             <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
               <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
