@@ -1,17 +1,18 @@
 export default function ResultTracking() {
-  let lapins = [];
-
-  for (let number = 0; number < 10; number++) {
-    lapins.push(
-      <div key={number}>
-        <p className="text-3xl text-white">lapin</p>
-      </div>
-    );
-  }
 
   return (
-    <div>
-      {lapins}
+    <div className="flex min-h-screen flex-col items-center p-10">
+      <h3 className="text-3xl font-bold mb-10">Your result for this address</h3>
+      <div className="w-full flex justify-between items-center mx-20">
+        <div>
+          <h4>Send</h4>
+
+        </div>
+        <div>
+          <h4>Receive</h4>
+
+        </div>
+      </div>
     </div>
-  );
+  )
 }

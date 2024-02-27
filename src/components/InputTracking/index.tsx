@@ -1,5 +1,5 @@
-import Title from "./Title.tsx";
-import InputAddress from "./InputAddress.tsx";
+import Title from "./Title";
+import InputAddress from "./InputAddress";
 
 export default function InputTracking() {
   const title = 'Crypto Tracking and Investigation Tool';

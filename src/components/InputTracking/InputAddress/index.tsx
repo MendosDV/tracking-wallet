@@ -57,7 +57,7 @@ export default function InputAddress() {
           onClick={toggleDropdown}
           id="dropdown-button"
           data-dropdown-toggle="dropdown"
-          className="flex-shrink-0 z-10 inline-flex items-center font-medium text-center border-r border-indigo-500 pr-4 md:w-1/3 xl:w-1/6"
+          className="flex-shrink-0 z-10 inline-flex items-center font-medium text-center border-r border-indigo-500 pr-4 md:w-1/3 lg:w-1/4"
           type="button"
         >
           <span className="flex gap-4 w-full m-auto" id="dropdown-blockchain">
